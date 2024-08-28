@@ -10,6 +10,7 @@ Esta aplicação permite o cadastro, edição, visualização e exclusão de equ
 • Visualizar informações detalhadas de qualquer equipamento.</br>
 
 ### 🗂️ Estrutura do Projeto</br>
+• `ArkmedsEquipamentos/`: App Django responsável por controlar dependências, configurações e urls dos demais Apps do projeto.</br>
 • `equipamentos/`: App Django responsável pelo gerenciamento dos equipamentos.</br>
 • `templates/`: Arquivos HTML para a interface web.</br>
 • `static/`: Arquivos JavaScript, CSS e outras mídias estáticas.</br>
@@ -25,8 +26,8 @@ Siga os passos abaixo para configurar o ambiente e executar o projeto localmente
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/SamuelAMT/equipamentos.git
-   cd equipamentos
+   git clone https://github.com/SamuelAMT/crud-equipamentos.git
+   cd crud-equipamentos
 
 2. Crie e ative um ambiente virtual:
     ```bash
