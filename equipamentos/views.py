@@ -6,6 +6,6 @@ class EquipamentoListCreate(generics.ListCreateAPIView):
     queryset = Equipamento.objects.all()
     serializer_class = EquipamentoSerializer
 
-class EquipamentoDetail(generics.RetrieveUpdateDestroyAPIView):
+class EquipamentoDetailUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Equipamento.objects.all()
     serializer_class = EquipamentoSerializer
