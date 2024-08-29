@@ -69,6 +69,8 @@ TEMPLATES = [
     },
 ]
 
+STATIC_URL = '/static/'
+
 WSGI_APPLICATION = 'ArkmedsEquipamentos.wsgi.application'
 
 
