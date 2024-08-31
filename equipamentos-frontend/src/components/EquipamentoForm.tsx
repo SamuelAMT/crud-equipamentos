@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../styles/equipamentos_form.module.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ptBR } from 'date-fns/locale';
 
 interface EquipamentoFormProps {
   onSubmit: (data: EquipamentoFormData) => void;
@@ -23,21 +26,37 @@ const EquipamentoForm: React.FC<EquipamentoFormProps> = ({ onSubmit }) => {
   const [formData, setFormData] = useState<EquipamentoFormData>({
     nome: '',
     descricao: '',
-    status: 'em_estoque',
+    status: 'Em Estoque',
     tipo: '',
     fabricante: '',
     modelo: '',
     numero_serie: '',
-    data_compra: '',
+    data_compra: new Date().toISOString().split('T')[0],
     valor_compra: 0,
-    data_ultima_manutencao: '',
-    data_proxima_manutencao: '',
+    data_ultima_manutencao: new Date().toISOString().split('T')[0],
+    data_proxima_manutencao: new Date().toISOString().split('T')[0],
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
+    });
+  };
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(e.target.value.replace(',', '.')).toFixed(2);
+    setFormData({
+      ...formData,
+      [e.target.name]: parseFloat(value),
+    });
+  };
+
+  const handleDateChange = (date: Date, field: keyof EquipamentoFormData) => {
+    setFormData({
+      ...formData,
+      [field]: date.toISOString().split('T')[0],
     });
   };
 
@@ -47,7 +66,7 @@ const EquipamentoForm: React.FC<EquipamentoFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className={styles["form-container"]}>
+    <div className={styles["form-container"]}>  
       <h2 className={styles["form-title"]}>Cadastro de Equipamentos</h2>
       <form onSubmit={handleSubmit} className={styles["equipamento-form"]}>
         <div className={styles["form-group"]}>
@@ -79,10 +98,10 @@ const EquipamentoForm: React.FC<EquipamentoFormProps> = ({ onSubmit }) => {
             required
             className={styles["select"]}
           >
-            <option value="em_uso">Em Uso</option>
-            <option value="em_estoque">Em Estoque</option>
-            <option value="manutencao">Em Manutenção</option>
-            <option value="nao_funcional">Não Funcional</option>
+            <option value="Em Uso">Em Uso</option>
+            <option value="Em Estoque">Em Estoque</option>
+            <option value="Manutenção">Em Manutenção</option>
+            <option value="Não Funcional">Não Funcional</option>
           </select>
         </div>
         <div className={styles["form-group"]}>
@@ -131,43 +150,42 @@ const EquipamentoForm: React.FC<EquipamentoFormProps> = ({ onSubmit }) => {
         </div>
         <div className={styles["form-group"]}>
           <label className={styles["label"]}>Data de Compra:</label>
-          <input
-            type="date"
-            name="data_compra"
-            value={formData.data_compra}
-            onChange={handleChange}
-            required
+          <DatePicker
+            selected={new Date(formData.data_compra)}
+            onChange={(date) => handleDateChange(date as Date, 'data_compra')}
+            dateFormat="dd/MM/yyyy"
+            locale={ptBR}
             className={styles["input"]}
           />
         </div>
         <div className={styles["form-group"]}>
           <label className={styles["label"]}>Valor de Compra:</label>
           <input
-            type="number"
+            type="text"
             name="valor_compra"
-            value={formData.valor_compra}
-            onChange={handleChange}
+            value={formData.valor_compra.toString().replace('.', ',')}
+            onChange={handleValueChange}
             required
             className={styles["input"]}
           />
         </div>
         <div className={styles["form-group"]}>
           <label className={styles["label"]}>Data da Última Manutenção:</label>
-          <input
-            type="date"
-            name="data_ultima_manutencao"
-            value={formData.data_ultima_manutencao}
-            onChange={handleChange}
+          <DatePicker
+            selected={new Date(formData.data_ultima_manutencao!)}
+            onChange={(date) => handleDateChange(date as Date, 'data_ultima_manutencao')}
+            dateFormat="dd/MM/yyyy"
+            locale={ptBR}
             className={styles["input"]}
           />
         </div>
         <div className={styles["form-group"]}>
           <label className={styles["label"]}>Data da Próxima Manutenção:</label>
-          <input
-            type="date"
-            name="data_proxima_manutencao"
-            value={formData.data_proxima_manutencao}
-            onChange={handleChange}
+          <DatePicker
+            selected={new Date(formData.data_proxima_manutencao!)}
+            onChange={(date) => handleDateChange(date as Date, 'data_proxima_manutencao')}
+            dateFormat="dd/MM/yyyy"
+            locale={ptBR}
             className={styles["input"]}
           />
         </div>

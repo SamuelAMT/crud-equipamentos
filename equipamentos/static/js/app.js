@@ -21,7 +21,7 @@ function addEquipamento() {
         id: 1,
         nome: 'Equipamento braço articulado',
         descricao: 'Equipamento para movimentação de cargas',
-        status: 'em_estoque',
+        status: 'Em Estoque',
         tipo: 'Mecânico',
         fabricante: 'Tesla Inc.',
         modelo: 'Model X',

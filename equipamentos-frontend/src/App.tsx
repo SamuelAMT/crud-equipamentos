@@ -1,5 +1,7 @@
 import React from 'react';
 import EquipamentoForm, { EquipamentoFormData } from './components/EquipamentoForm';
+import Header from './components/Header';
+import styles from './styles/equipamentos_form.module.css';
 
 const App: React.FC = () => {
   const handleFormSubmit = async (data: EquipamentoFormData) => {
@@ -11,21 +13,21 @@ const App: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
-      
-      if (response.ok) {
-        console.log('Equipamento cadastrado com sucesso!');
-      } else {
-        console.error('Erro ao cadastrar o equipamento.');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      console.log('Equipamento cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
   };
 
   return (
-    <div>
-      <h1>Cadastro de Equipamentos</h1>
-      <EquipamentoForm onSubmit={handleFormSubmit} />
+    <div className={styles["app-container"]}>
+      <Header />
+      <div className={styles["form-container"]}>
+        <EquipamentoForm onSubmit={handleFormSubmit} />
+      </div>
     </div>
   );
 };

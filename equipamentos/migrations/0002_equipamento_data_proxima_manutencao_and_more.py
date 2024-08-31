@@ -33,6 +33,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='equipamento',
             name='status',
-            field=models.CharField(choices=[('em_uso', 'Em Uso'), ('em_estoque', 'Em Estoque'), ('manutencao', 'Em Manutenção'), ('nao_funcional', 'Não Funcional')], default='em_estoque', max_length=50),
+            field=models.CharField(choices=[('Em Uso', 'Em Uso'), ('Em Estoque', 'Em Estoque'), ('Manutenção', 'Em Manutenção'), ('Não Funcional', 'Não Funcional')], default='Em Estoque', max_length=50),
         ),
     ]

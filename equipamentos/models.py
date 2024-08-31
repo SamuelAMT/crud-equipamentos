@@ -2,15 +2,15 @@ from django.db import models
 
 class Equipamento(models.Model):
     STATUS_CHOICES = [
-        ('em_uso', 'Em Uso'),
-        ('em_estoque', 'Em Estoque'),
-        ('manutencao', 'Em Manutenção'),
-        ('nao_funcional', 'Não Funcional'),
+        ('Em Uso', 'Em Uso'),
+        ('Em Estoque', 'Em Estoque'),
+        ('Manutenção', 'Em Manutenção'),
+        ('Não Funcional', 'Não Funcional'),
     ]
     
     nome = models.CharField(max_length=255, blank=False, null=False, default='Equipamento sem nome')
     descricao = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='em_estoque')
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Em Estoque')
     tipo = models.CharField(max_length=100, blank=False, null=False, default='Equipamento sem tipo')
     fabricante = models.CharField(max_length=100, blank=False, null=False, default='Fabricante desconhecido')
     modelo = models.CharField(max_length=100, blank=False, null=False, default='Modelo desconhecido')

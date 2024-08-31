@@ -3,7 +3,7 @@ import axios from 'axios';
 interface Equipamento {
   id?: number;
   nome: string;
-  tipo: string;
+tipo: string;
   fabricante: string;
   modelo: string;
   numero_serie: string;
