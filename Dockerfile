@@ -10,12 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /code/
 
-ARG DB_NAME
-ARG DB_ENGINE
-
-ENV DB_NAME=${DB_NAME}
-ENV DB_ENGINE=${DB_ENGINE}
+COPY . /code/
 
 EXPOSE 8000
 
-CMD ["gunicorn", "ArkmedsEquipamentos.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
