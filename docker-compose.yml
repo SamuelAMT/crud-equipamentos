@@ -4,6 +4,8 @@ services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
+    image: samuelamt/crud-equipamentos:latest
+    container_name: equipamentos-crud-container
     volumes:
       - .:/code
     ports:
