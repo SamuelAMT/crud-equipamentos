@@ -2,9 +2,7 @@ version: '3.9'
 
 services:
   backend:
-    build:
-      context: ./crud-equipamentos
-      dockerfile: Dockerfile
+    dockerfile: Dockerfile
     image: samuelamt/crud-equipamentos:latest
     ports:
       - "8000:8000"
@@ -14,9 +12,8 @@ services:
       - app-network
 
   frontend:
-    build:
-      context: ./equipamentos-frontend
-      dockerfile: Dockerfile
+    context: ./equipamentos-frontend
+    dockerfile: Dockerfile
     image: samuelamt/equipamentos-frontend:latest
     ports:
       - "3000:3000"
