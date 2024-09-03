@@ -15,6 +15,13 @@ Esta aplicação permite o cadastro, edição, visualização e exclusão de equ
 • `templates/`: Arquivos HTML para a interface web.</br>
 • `static/`: Arquivos JavaScript, CSS e outras mídias estáticas.</br>
 
+## How to run
+  É possível rodar o frontend e o backend juntos, via docker compose, para isso, siga as instruções abaixo:
+  ```bash
+  docker-compose pull
+  docker-compose up
+  ```
+
 ### 🧪 Testes</br>
 Os testes automatizados podem ser executados com o seguinte comando:
 
